@@ -94,21 +94,7 @@ Quagga.onDetected(function(result) {
 
   const code = result.codeResult.code;
 
-  console.log("RAW:", code);
-
- 
-
-  // Codabar の場合、A が除去されて返ることがある
-
-  if (/^\d{13}$/.test(code)) {
-
-    // MMDD + UUUUU + GGGG
-
-    const uuuuu = code.substr(4, 5);
-
-    document.getElementById("result").textContent = uuuuu;
-
-  }
+  document.getElementById("result").textContent = code;
 
 });
 
