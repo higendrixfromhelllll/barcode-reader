@@ -52,41 +52,43 @@ document.addEventListener("DOMContentLoaded", function () {
 
  
 
-  Quagga.init({
+Quagga.init({
 
-    inputStream: {
+  inputStream: {
 
-      type: "LiveStream",
+    type: "LiveStream",
 
-      target: document.querySelector("#scanner"),
+    target: document.querySelector("#scanner"),
 
-      constraints: {
+    constraints: {
 
-        facingMode: "environment"
-
-      }
-
-    },
-
-    decoder: {
-
-      readers: ["code_128_reader"]
+      facingMode: "environment"
 
     }
 
-  }, function(err) {
+  },
 
-    if (err) {
+  locate: false,   // ← 超重要
 
-      alert("カメラ初期化エラー: " + err);
+  decoder: {
 
-      return;
+    readers: ["codabar_reader"]
 
-    }
+  }
 
-    Quagga.start();
+}, function(err) {
 
-  });
+  if (err) {
+
+    alert(err);
+
+    return;
+
+  }
+
+  Quagga.start();
+
+});
 
  
 
