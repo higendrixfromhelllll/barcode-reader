@@ -90,29 +90,27 @@ document.addEventListener("DOMContentLoaded", function () {
 
  
 
-  Quagga.onDetected(function(result) {
+Quagga.onDetected(function(result) {
 
-    const code = result.codeResult.code;
+  const code = result.codeResult.code;
+
+  console.log("RAW:", code);
 
  
 
-    if (
+  // Codabar の場合、A が除去されて返ることがある
 
-      code.length === 16 &&
+  if (/^\d{13}$/.test(code)) {
 
-      code.startsWith("A") &&
+    // MMDD + UUUUU + GGGG
 
-      code.endsWith("A")
+    const uuuuu = code.substr(4, 5);
 
-    ) {
+    document.getElementById("result").textContent = uuuuu;
 
-      const uuuuu = code.substr(5, 5);
+  }
 
-      document.getElementById("result").textContent = uuuuu;
-
-    }
-
-  });
+});
 
  
 
